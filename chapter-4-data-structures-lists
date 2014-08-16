@@ -1,6 +1,7 @@
 function arrayToList(arr) {
+    var len = arr.length;
     function addToList(depth) {
-        if (depth >= arr.length) return null;
+        if (depth >= len) return null;
         return {
             value: arr[depth],
             rest: addToList(depth+1)
