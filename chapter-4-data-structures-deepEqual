@@ -1,0 +1,26 @@
+function deepEqual(item1, item2) {
+    function isObject(item) {
+        return typeof item === "object" && item !== null;
+    }
+    
+    if (isObject(item1) && isObject(item2)) {
+        for (var prop in item1) {
+            if (item1.hasOwnProperty(prop) && item2.hasOwnProperty(prop)) {
+                if (!deepEqual(item1[prop], item2[prop])) return false;
+            } else if (item1.hasOwnProperty(prop) || item2.hasOwnProperty(prop)) {
+                return false;
+            }
+        }
+        return true;
+    } else {
+        return item1 === item2;
+    }
+}
+
+var obj = {here: {is: "an"}, object: 2};
+console.log(deepEqual(obj, obj));
+// → true
+console.log(deepEqual(obj, {here: 1, object: 2}));
+// → false
+console.log(deepEqual(obj, {here: {is: "an"}, object: 2}));
+// → true
