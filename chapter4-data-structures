@@ -18,13 +18,24 @@ function listToArray(list) {
     return addToArray([], list);
 }
 
+function prepend(el, list) {
+    return {
+        value: el,
+        rest: list
+    };
+}
+
+function nth(list, depth) {
+    return depth ? nth(list.rest, depth-1) : list.value;
+}
+
 var arrayGuy = [10,20,30,40];
 
 console.log(arrayToList(arrayGuy));
 // → {value: 10, rest: {value: 20, rest: null}}
 console.log(listToArray(arrayToList(arrayGuy)));
 // → [10, 20, 30]
-// console.log(prepend(10, prepend(20, null)));
+console.log(prepend(10, prepend(20, null)));
 // → {value: 10, rest: {value: 20, rest: null}}
-// console.log(nth(arrayToList([10, 20, 30]), 1));
+console.log(nth(arrayToList([10, 20, 30]), 1));
 // → 20
