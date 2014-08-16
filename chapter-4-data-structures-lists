@@ -26,10 +26,11 @@ function prepend(el, list) {
 }
 
 function nth(list, depth) {
-    return depth ? nth(list.rest, depth-1) : list.value;
+    if (depth) return nth(list.rest, depth-1);
+    return list.value;
 }
 
-var arrayGuy = [10,20,30,40];
+var arrayGuy = [10,20,30];
 
 console.log(arrayToList(arrayGuy));
 // → {value: 10, rest: {value: 20, rest: null}}
@@ -37,5 +38,5 @@ console.log(listToArray(arrayToList(arrayGuy)));
 // → [10, 20, 30]
 console.log(prepend(10, prepend(20, null)));
 // → {value: 10, rest: {value: 20, rest: null}}
-console.log(nth(arrayToList([10, 20, 30]), 1));
+console.log(nth(arrayToList(arrayGuy), 1));
 // → 20
